@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  keycloak:
+    image: quay.io/keycloak/keycloak:latest
+    container_name: ecommerce_keycloak
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+    command: ["start-dev"]
+    ports:
+      - "8080:8080"
+    volumes:
+      - /Users/ouisoft/WorkSpace/Docker/volumes/keycloak:/opt/keycloak/data # Volume pour persister les données Keycloak
+    networks:
+      - ecommerce_network
+volumes:
+  keycloak_data:
+    driver: local
+networks:
+  ecommerce_network:
+    name: ecommerce_network
+    driver: bridge

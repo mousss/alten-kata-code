@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  axon-server:
+    image: axoniq/axonserver:latest
+    container_name: ecommerce_axon
+    ports:
+      - "8024:8024"
+      - "8124:8124"
+    environment:
+      - AXONIQ_AXONSERVER_DEVMODE_ENABLED=true
+    volumes:
+      - /Users/ouisoft/WorkSpace/Docker/volumes/axonServer/axon-data:/axonserver/data
+      - /Users/ouisoft/WorkSpace/Docker/volumes/axonServer/axon-events:/axonserver/eventdata
+networks:
+  ecommerce_network:
+    name: ecommerce_network
+    driver: bridge
